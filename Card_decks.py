@@ -6,7 +6,6 @@ card_values = ['Ace', '2','3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Quee
 
 def build_deck() :
     deck = []
-    whatever = ()
     for i in range(len(card_families)) :
         for j in range(len(card_values)) :
             deck.append ((card_values[j] , card_families[i]))
@@ -17,36 +16,39 @@ def shuffle_deck() :
     shuffle(deck)
     return(deck)
 
-def deal_cards(deck, n):
+def deal_cards(deck, n, deal_method):
+    if n == 0 :
+        return("There cannot be a game with no players...it's not a game then :|")
+
+    if len(deck) == 0 :
+        return("You can't play cards without a deck...Here's 5€, go buy a card deck.")
+
+    if deal_method !=1 and deal_method !=2 :
+        return("You need to select a valid dealing method. I have implemented two methods : 1 is to deal all of a players' cards at once and 2 is to deal one card to each player, circularily")
 
     len_slice = len(deck)//n
-    discard = len(deck)%n
+    discard_cards = len(deck)%n
     players = []
-    pot = []
+    discard_pile = []
 
 
-    #To deal all of a player's cards at once
-
-    for i in range(n) :
-        slice_start = len_slice*i
-        slice_stop = (len_slice-1)*(i+1)
-        players.append(deck[slice_start:slice_stop])
+    #To deal all of a player's cards at once, method == 1
+    if deal_method == 1 :
+        for i in range(n) :
+            slice_start = len_slice*i
+            slice_stop = (len_slice-1)*(i+1)
+            players.append(deck[slice_start:slice_stop])
 
 
     #to deal cards one by one to each player
+    if deal_method == 2 :
+        for i in range(n) :
+            slice_start = i
+            slice_stop = len(deck)-discard_cards
+            players.append(deck[slice_start:slice_stop:n])
+            print(len(players))
 
-    for i in range(n) :
-        slice_start = i
-        slice_stop = len(deck)-discard
-        players.append(deck[slice_start:slice_stop:n])
-    pot.append(deck[(len_slice*n):])
-    return("players =",players,"pot =", pot)
+    discard_pile.append(deck[(len_slice*n):])
 
 
-
-numbers = [i for i in range(51)]
-print(numbers)
-slic = numbers[0::5]
-print(slic)
-slic = numbers[1::5]
-print(slic)
+    return("players' cards =",players,"discard pile =", discard_pile)
