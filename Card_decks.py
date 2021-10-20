@@ -24,7 +24,7 @@ def deal_cards(deck, n, deal_method):
         return("You can't play cards without a deck...Here's 5€, go buy a card deck.")
 
     if deal_method !=1 and deal_method !=2 :
-        return("You need to select a valid dealing method. I have implemented two methods : 1 is to deal all of a players' cards at once and 2 is to deal one card to each player, circularily")
+        return("You need to select a valid dealing method. I have implemented two methods : 1 is to deal all of a players' cards at once and 2 is to deal to each player one card each time, circularily")
 
     len_slice = len(deck)//n
     discard_cards = len(deck)%n
