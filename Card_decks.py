@@ -46,7 +46,6 @@ def deal_cards(deck, n, deal_method):
             slice_start = i
             slice_stop = len(deck)-discard_cards
             players.append(deck[slice_start:slice_stop:n])
-            print(len(players))
 
     discard_pile.append(deck[(len_slice*n):])
 
