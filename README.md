@@ -5,4 +5,4 @@ All the code is written by me, so feel free tu use it if you want to.
 Most of, if not all, the code is written in Python
 
 
-Thanks for Reading ! :)
+Thanks for visiting ! :)
